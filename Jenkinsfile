@@ -20,7 +20,7 @@ pipeline {
                 steps {
                 withEnv(["AWS_ACCESS_KEY=${env.AWS_ACCESS_KEY}", "AWS_SECRET_KEY=${env.AWS_SECRET_KEY}", "REGION=${env.REGION}"]) {
                         script {
-                            sh 'aws eks update-kubeconfig --name eksclustername --region us-west-2'
+                            sh 'aws eks update-kubeconfig --name my-EKS1 --region us-west-2'
                             sh 'kubectl create -f /eks-flask-files/configMap.yml '
                             sh 'kubectl create -f /eks-flask-files/secret.yml '
                             sh 'kubectl create -f /eks-flask-files/statefulset.yml '
