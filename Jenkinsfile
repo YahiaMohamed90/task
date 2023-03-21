@@ -9,7 +9,7 @@ pipeline {
             }
             stage('Push Docker Image to ECR') {
                 steps {
-                withEnv(["AWS_ACCESS_KEY=${env.AWS_ACCESS_KEY}", "AWS_SECRET_KEY=${env.AWS_SECRET_KEY}", "REGION=${env.REGION-ECR}"]) {
+                withEnv(["AWS_ACCESS_KEY=${env.AWS_ACCESS_KEY}", "AWS_SECRET_KEY=${env.AWS_SECRET_KEY}", "REGION-ECR=${env.REGION-ECR}"]) {
                         sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/n4z8o9z9'
                         sh 'docker tag public-ecr:latest public.ecr.aws/n4z8o9z9/public-ecr:latest'
                         sh 'docker push public.ecr.aws/n4z8o9z9/public-ecr:latest'
